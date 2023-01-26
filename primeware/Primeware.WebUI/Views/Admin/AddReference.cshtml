@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.Reference
+
+@{
+    Layout = null;
+}
+
+<form class="form-group" method="post" enctype="multipart/form-data">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ürün Ekleme Sayfası</h4>
+                <div class="form-group">
+                    @Html.HiddenFor(x => x.Id)
+
+                    <label for="exampleInputName1">Referans Adı</label>
+                    @Html.TextBoxFor(x => x.ReferenceName, new { @class = ("form-control") })
+
+                </div>
+         
+                @*      <div class="form-group">
+                <label>Product Image</label>
+                <input type="file" name="ProductImage"/>
+
+                </div>*@
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">Ekle</button>
+                @*<button class="btn btn-light">İptal</button>*@
+            </div>
+        </div>
+    </div>
+</form>

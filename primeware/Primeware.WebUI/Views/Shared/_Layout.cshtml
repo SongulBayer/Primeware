@@ -1,0 +1,224 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Wallet - Payday Loan Service Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta name="description" content="This is meta description">
+    <meta name="author" content="Themefisher">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/PrimewareAssets/source/plugins/slick/slick.css">
+    <link href="~/PrimewareAssets/source/plugins/font-awesome/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/PrimewareAssets/source/plugins/font-awesome/brands.css" rel="stylesheet" />
+    <link href="~/PrimewareAssets/source/plugins/font-awesome/solid.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/PrimewareAssets/source/plugins/font-awesome/fontawesome.min.css">
+    <link rel="stylesheet" href="~/PrimewareAssets/source/plugins/font-awesome/brands.css">
+    <link rel="stylesheet" href="~/PrimewareAssets/source/plugins/font-awesome/solid.css">
+    <link href="~/PrimewareAssets/source/plugins/source/slick/slick.css" rel="stylesheet" />
+    <link href="~/PrimewareAssets/source/plugins/slick/slick.css" rel="stylesheet" />
+    <link href="~/PrimewareAssets/theme/css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header class="navigation bg-tertiary">
+        <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img loading="prelaod" decoding="async" class="img-fluid" width="160" src="~/images/logo-new.png" alt="Wallet">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Index">ANASAYFA</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/About/Index">HAKKIMIZDA</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Referance/Index">REFERANSLARIMIZ</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Product/Index">ÜRÜNLERİMİZ</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Contact/Index">İLETİŞİM</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="modal applyLoanModal fade" id="applyLoan" tabindex="-1" aria-labelledby="applyLoanLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h4 class="modal-title" id="exampleModalLabel">How much do you need?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#!" method="post">
+                        <div class="row">
+                            <div class="col-lg-6 mb-4 pb-2">
+                                <div class="form-group">
+                                    <label for="loan_amount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control shadow-none" id="loan_amount" placeholder="ex: 25000">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4 pb-2">
+                                <div class="form-group">
+                                    <label for="loan_how_long_for" class="form-label">How long for?</label>
+                                    <input type="number" class="form-control shadow-none" id="loan_how_long_for" placeholder="ex: 12">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mb-4 pb-2">
+                                <div class="form-group">
+                                    <label for="loan_repayment" class="form-label">Repayment</label>
+                                    <input type="number" class="form-control shadow-none" id="loan_repayment" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4 pb-2">
+                                <div class="form-group">
+                                    <label for="loan_full_name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control shadow-none" id="loan_full_name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4 pb-2">
+                                <div class="form-group">
+                                    <label for="loan_email_address" class="form-label">Email address</label>
+                                    <input type="email" class="form-control shadow-none" id="loan_email_address">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary w-100">Get Your Loan Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="container my-5">
+        <footer class="text-center text-lg-start text-white"
+                style="background-color: white">
+            <section class="d-flex justify-content-between p-4"
+                     style="background-color: white">
+            </section>
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <div class="row mt-3">
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h6 class="text-uppercase fw-bold">Primeware</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px; background-color: dodgerblue; height: 2px" />
+                            <p style="color:black">
+                                Alanında donanımlı uzmanlar ile, hızlı, güvenilir, ileri teknoloji kullanılmış çözümler üretmek. İlkleri başarmak, ulusal yazılım şirketleri içerisinde üst sıralarda yer almak ve uluslararası başarılara imza atmak.
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 class="text-uppercase fw-bold">Ürünler</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px; background-color: dodgerblue; height: 2px" />
+                            <p>
+                                <a href="/Product/Index" class="text-black">Air Handling Unit (AHU)</a>
+                            </p>
+                            <p>
+                                <a href="/Product/Index" class="text-black">Heat Recovery</a>
+                            </p>
+                            <p>
+                                <a href="/Product/Index" class="text-black">Rooftop</a>
+                            </p>
+                            <p>
+                                <a href="/Product/Index" class="text-black">Chiller </a>
+                            </p>
+                            <p>
+                                <a href="/Product/Index" class="text-black">Close Control </a>
+                            </p> 
+                            <p>
+                                <a href="/Product/Index" class="text-black">Fancoil</a>
+                            </p>  
+                            <p>
+                                <a href="/Product/Index" class="text-black">Aparey</a>
+                            </p> 
+                            <p>
+                                <a href="/Product/Index" class="text-black">Convector</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 class="text-uppercase fw-bold">Useful links</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px; background-color: dodgerblue; height: 2px" />
+                            <p>
+                                <a href="Home/Index" class="text-black">Anasayfa</a>
+                            </p>
+                            <p>
+                                <a href="About/Index" class="text-black">Hakkımızda</a>
+                            </p>
+                            <p>
+                                <a href="Product/Index" class="text-black">Ürünlerimiz</a>
+                            </p>
+                            <p>
+                                <a href="Contact/Index" class="text-black">Help</a>
+                            </p>
+                        </div>
+                        <div style="color:black" class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <h6 class=" fw-bold">İLETİŞİM</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px; background-color: dodgerblue; height: 2px" />
+                            <p>
+                                <li style="list-style-type:none"><i class="fas fa-home mr-3"></i> Esentepe Mahallesi <br /></li>
+                                <li style="list-style-type:none">Akademiyolu Sokak <br /></li>
+                                <li style="list-style-type:none">Teknoloji Geliştirme Bölgesi Sitesi <br /></li>
+                                <li style="list-style-type:none"> D Block Apt. No: 10 D / 102 <br /></li>
+                            </p>
+                            <p><i class="fas fa-phone mr-3"></i> &nbsp; Telefon : 0 (264) 255 64 64</p>
+                            <p><i class="fas fa-envelope mr-3"></i>&nbsp; Email : primeware@outlook.com.tr</p>
+                            @*<div style="text-align:center">
+                                <a href="" class="text-black me-4">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div style="text-align:center; color:black">
+                <p>
+                    © @DateTime.Now.Year Primeware. Tüm Haklar Saklıdır | Design by
+                    <a href="Home/Index">Primeware</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="~/PrimewareAssets/source/plugins/jquery/jquery.min.js"></script>
+    <script src="~/PrimewareAssets/source/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/PrimewareAssets/source/plugins/slick/slick.min.js"></script>
+    <script src="~/PrimewareAssets/source/plugins/scrollmenu/scrollmenu.min.js"></script>
+
+    <script src="~/PrimewareAssets/source/js/script.js"></script>
+</body>
+</html>
+

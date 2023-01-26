@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.Reference
+
+@{
+    ViewData["Title"] = "EditReference";
+    Layout = "~/Views/Shared/View.cshtml";
+}
+
+<h1>Referans Düzenleme Syfası</h1>
+@using (Html.BeginForm("EditReference", "Admin", FormMethod.Post))
+{
+    <br />
+ 
+   @* @Html.Label("Product Details2")
+    @Html.TextAreaFor(x=>x.ReferenceImage,10,3,new {@class = "form-control"})
+    <br />*@
+
+    @Html.Label("Referans Adı")
+    @Html.TextAreaFor(x=>x.ReferenceName,3,10,new {@class = "form-control"})
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+}
+

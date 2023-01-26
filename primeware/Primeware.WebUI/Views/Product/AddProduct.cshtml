@@ -1,0 +1,48 @@
+﻿@model EntityLayer.Concrete.Product
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/View.cshtml";
+}
+
+<form class="form-group" method="post" enctype="multipart/form-data">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ürün Bilgileri Düzenleme Sayfası</h4>
+                <div class="form-group">
+                
+                    <label for="exampleInputName1">Ürün Adı</label>
+                    @Html.TextBoxFor(x => x.ProductName, new { @class = ("form-control") })
+                @*   @Html.ValidationMessageFor(x => x.WriterName)*@
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Ürün Türü</label>
+                    @Html.TextBoxFor(x => x.ProductType, new { @class = ("form-control") })
+                 @*   @Html.ValidationMessageFor(x => x.WriterMail)*@
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword4">Ürün fotos</label>
+                    @Html.TextBoxFor(x => x.ProductImage, new { @class = "form-control" })
+ @*                   @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })*@
+
+                </div> 
+                <div class="form-group">
+                    <label for="exampleInputPassword4">Ürün Detayları</label>
+                    @Html.TextBoxFor(x => x.ProductDetails, new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })*@
+
+                </div>    <div class="form-group">
+                    <label for="exampleInputPassword4">Ürün Detayları 2</label>
+                    @Html.TextBoxFor(x => x.ProductDetails2, new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })*@
+
+                </div>
+           
+                <button type="submit" class="btn btn-gradient-primary mr-2">Güncelle</button>
+                <button class="btn btn-light">İptal</button>
+            </div>
+        </div>
+    </div>
+</form>
+

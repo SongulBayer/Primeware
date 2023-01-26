@@ -1,0 +1,46 @@
+﻿@using EntityLayer.Concrete
+@model List<Product>
+@{
+    ViewData["Title"] = "GetList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<a href="/Admin/AddProduct"  class="btn btn-danger">Yeni Ürün Girişi</a>
+
+
+<div class="left-blog-info-w3layouts-agileits text-left">
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-4">
+
+                <div>
+                    <div class="col-xl-3 col-lg-8 col-md-6 mt-4">
+                        <div class="card bg-transparent border-0 text-center">
+                            <div class="card-img">
+                                <img loading="lazy" decoding="async" src="@item.ProductImage" alt="Scarlet Pena" class="rounded w-100" width="500" height="500">
+                                <ul class="card-social list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="/Product/ProductDetails/@item.Id/"><i class="fas fa-external-link-alt"></i></a>
+                                        <a href="/Admin/DeleteProduct/@item.Id" onclick="return confirm('Silme istediğine emin misin');" class="btn btn-danger">Sil</a>
+                                        <a class="nav-link" href="/Admin/EditProduct/@item.Id/">Edit </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h3><a href="/Admin/ProductDetails/@item.Id/" class="text-black">@item.ProductName</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+        </div>
+    </div>
+</section>

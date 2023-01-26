@@ -1,0 +1,1383 @@
+﻿@model Primeware.WebUI.ProductViewModel
+@{
+    ViewData["Title"] = "product";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style type="text/css">
+
+
+
+        .custom-file-label::after {
+            content: "Gözat" !important;
+        }
+
+        .custom-hr {
+            border: 0;
+            clear: both;
+            display: block;
+            width: 80%;
+            background-color: rgba(0,0,0,.1);
+            height: 0.5px;
+        }
+
+        .select-design {
+            background: #F9F8FA;
+            text-align: left;
+            color: black;
+            border-bottom-color: unset;
+            box-shadow: inset 0 0 0px 1px #f9f8fa !important;
+            text-indent: 10px;
+            border-bottom: 0px;
+        }
+
+        .ck-editor__editable_inline {
+            min-height: 200px !important;
+            max-height: 200px !important;
+        }
+
+        .pcoded-navbar .main-menu-footer {
+            display: block;
+            padding: 50px 60px 10px 60px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blue-gradient-button {
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 20px 30px -6px #43c2f6;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            background-image: linear-gradient(to right, #43c2f6, #3d93d7 );
+            transition: 500ms background-position ease-in-out;
+            background-size: 500%;
+            background-position: left;
+        }
+
+            .blue-gradient-button:hover {
+                background-position: right;
+                color: white;
+            }
+
+        .hide {
+            display: none;
+        }
+
+        .primeware-logo {
+            opacity: 0.9;
+        }
+
+        .primeware-text {
+            color: white;
+            transition: ease-in 0.5s;
+        }
+
+            .primeware-text:hover {
+                color: white;
+                font-size: 14px;
+            }
+
+        .theme-color {
+            background-color: #00a7e1;
+            color: white;
+        }
+            </style>
+
+    <!-- [ Pre-loader ] start -->
+
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+
+    <!-- [ navigation menu ] end -->
+    <!-- [ Header ] start -->
+
+    <!-- [ Header ] end -->
+    <!-- [ Main Content ] start -->
+
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+ <div class="row" >
+
+                <!-- [ sample-page ] start -->
+    <div class="col-sm-12">
+
+
+     <div class="row">
+       <div class="col-sm-12">
+          <div class="card">
+             <div class="card-header">
+                <h5>Ürün Ekle</h5>
+                <tr>
+                            <td>
+                                <span data-toggle="modal" data-target="#AddProductModal"><a href="/Admin/AddProduct/" onclick="AddProducts(4596)" class="btn btn-icon btn-AddProduct btn-sm btnAddProduct" style=" color: green" data-toggle="tooltip" data-placement="top" data-original-title="Add Product"><i class="fas fa-plus-circle"></i></a> </span>
+                   </td>
+                </tr>
+             </div>
+             <div class="card-body">
+                 <div class="table-responsive dt-responsive">
+                      <table id="dom-jqry" class="table table-striped table-bordered nowrap">
+                         <thead>
+                             <tr>
+                                <th class="dt-filter-select">Product Name</th>
+                                <th class="dt-filter-text">Product Type</th>
+                                <th class="dt-filter-text">Product Details</th>
+                                <th class="dt-filter-text">Product Date</th>
+@*                                <th class="dt-filter-text">Product Images</th>*@
+                                <th class="dt-filter-text">Apply</th>
+                             </tr>
+                         </thead>
+                         @foreach (var item in Model.ListOfProduct)
+                                {
+                                     <tbody>
+                                    <tr>
+                                        <td>@item.ProductName</td>
+                                        <td style="min-width: 50px">@item.ProductType </td>
+                                        <td>PR-092022-0014</td>
+                                        <td>22.09.2022</td>
+@*                                        <td>aleyna y&#x131;lmaz</td>*@
+                                        <td>
+                                      @*   <span data-toggle="modal" data-target="#viewProductModal"><a href="/Admin/EditProduct/" onclick="getProducts(4594)" class="btn btn-icon btn-ViewProduct btn-sm btnViewProduct" style=" color:orangered" data-toggle="tooltip" data-placement="top" data-original-title="Show Product"><i class="fas fa-edit"></i></a>
+                                             </span>*@
+                                            <a href="/Admin/DeleteProduct/@item.Id" onclick="return confirm('Silme istediğine emin misin');" class="btn btn-danger" >Sil</a>
+                                            <span data-toggle="modal" data-target="#viewProductModal">
+                                               <a href="/Admin/EditProduct/@item.Id" onclick="GetProduct(@item.Id)" class="btn btn-warning" style=" color:orangered" data-toggle="tooltip" data-placement="top" data-original-title="Show Product">Güncelle</a>
+                                             </span>
+                                        </td>
+                                    </tr>
+                          </tbody>
+                                }
+                      </table>
+                   </div>
+                  </div>
+               </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+ @using (Html.BeginForm("EditProduct", "Admin", FormMethod.Post))
+{
+ 
+
+
+}
+<div class="modal fade" id="viewProductModal" tabindex="-1" role="dialog" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered modal" role="document">
+             <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="viewProductModalTitle"> PRODUCT </h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+
+                 <div class="modal-body mt-2">
+                   <form id="viewProductModal">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="ProductName" class="col-md-12 col-form-label text-primary"> Product Name</label>
+                            <div class="col-md-12">
+                                @*<input type="text" class="form-control mt-0" id="add_Model" name="PumpCoefficient.Model" value="@Model.Product.ProductName">*@
+                                <input type="text" class="form-control mt-0" id="ProductName" name="productName" value="">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ProductType" class="col-md-12 col-form-label text-primary">Product Type</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control mt-0" id="ProductType" name="productType" value="productType">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                          <div class="col-md-6">
+                            <label for="ProductDetails" class="col-md-12 col-form-label text-primary">Product Details</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control mt-0" id="ProductDetails" name="productDetails" value="">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                          <div class="col-md-6">
+                            <label for="ProductDetails2" class="col-md-12 col-form-label text-primary">Product Details2</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control mt-0" id="ProductDetails2" name="productDetails2" value="">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Product_Images" class="col-md-12 col-form-label text-primary">Product Images</label>
+                            <div class="col-md-12">
+                                <input type="image" class="form-control mt-0" id="ProductImages" name="productImages" value="">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                   </form>
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="button" id="updateProductBtn" onclick="viewProductModal();" class="btn btn-primary">Update<i class=" feather icon-plus ml-2"></i> </button>
+                    <button type="button" class="btn btn-secondery" data-dismiss="modal">Close </button>
+
+                </div>
+               </div>
+           </div>
+
+</div>
+
+
+
+
+    <!-- [ Main Content ] end -->
+    <!-- Footer -->
+
+    <!-- Footer -->
+    <!-- Required Js -->
+    <script src="/js/vendor-all.min.js"></script>
+    <script src="/js/plugins/bootstrap.min.js"></script>
+    <script src="/js/ripple.js"></script>
+    <script src="/js/pcoded.min.js"></script>
+    <script src="/js/plugins/jquery.bootstrap.wizard.min.js"></script>
+    <script src="/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="/js/plugins/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/plugins/sweetalert.min.js"></script>
+    <script src="/js/appware/data-api-appware.js"></script>
+    <script src="/js/pages/data-advance-custom.js"></script>
+    <script src="/js/pages/form-select-custom.js"></script>
+    <script src="/js/plugins/select2.full.min.js"></script>
+    <script src="/js/plugins/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="/lib/jquery-inputpicker/jquery.inputpicker.js"></script>
+    <script src="/js/pages/form-validation.js"></script>
+    <script src="/js/plugins/moment.min.js"></script>
+    <script src="/js/plugins/daterangepicker.js"></script>
+    <script src="/js/pages/ac-datepicker.js"></script>
+    <script src="/lib/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/js/pages/ac-alert.js"></script>
+    <script src="/js/plugins/bootstrap-notify.min.js"></script>
+    <script src="/js/pages/ac-notification.js"></script>
+    <script src="/js/plugins/apexcharts.min.js"></script>
+    <script src="/js/plugins/bootstrap-select.js"></script>
+    <!-- pnotify Js -->
+    <script src="/js/plugins/PNotify.js"></script>
+    <script src="/js/plugins/PNotifyButtons.js"></script>
+    <script src="/js/plugins/PNotifyCallbacks.js"></script>
+    <script src="/js/plugins/PNotifyDesktop.js"></script>
+    <script src="/js/plugins/PNotifyConfirm.js"></script>
+    <script src="/js/pages/notify-event.js"></script>
+    <script>
+        $(document).ready(function () {
+            //CheckNavbarCollapsed();
+            //$('#NavbarArea').hover(function () {
+            //    CheckNavbarCollapsed();
+            //});
+            //$('#HeaderArea a').click(function () {
+            //    CheckNavbarCollapsed();
+            //});
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetSellerLogo",
+                dataType: "text",
+                success:
+                    function (response) {
+                        response = response.replace('"', '');
+                        response = response.replace('"', '');
+                        if (response == "" || response == null) {
+                            $('#logoImage').attr('src', "/images/SellerImages/blank.png");
+                        } else {
+                            $('#logoImage').attr('src', response);
+                        }
+                    },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'GetSellerLogoError',
+                        showCancelButton: false
+                    });
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetProgramVersion",
+                dataType: "text",
+                success:
+                    function (response) {
+                        $('#ProgramVersion').text('Version: v' + response.replace('"', '').replace('"', ''));
+                    },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'GetProgramVersionError',
+                        showCancelButton: false
+                    });
+                }
+            });
+        });
+        //function CheckNavbarCollapsed() {
+        //    if ($('#NavbarArea').hasClass("navbar-collapsed")) {
+        //        console.log('collapsed');
+        //        $('#PrimewareLogo').prop('hidden', true);
+        //    } else {
+        //        console.log('uncollapsed');
+        //        $('#PrimewareLogo').prop('hidden', false);
+        //    }
+        //};
+
+
+
+
+
+        $('#report-table').DataTable();
+        $('#TRlang').css('cursor', 'pointer');
+        $('#ENGlang').css('cursor', 'pointer');
+        $('.lang-change').click(function () {
+            let value = $(this).attr('culture');
+            $.ajax({
+                type: "get",
+                url: "/Localization/Change",
+                data: { culture: value },
+                dataType: "text",
+                success:
+                    function (response) {
+                        let pathName = window.location.pathname;
+                        let query = window.location.search;
+                        let returnUrl = pathName + query;
+                        window.location.href = returnUrl;
+                    },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'ChangeLanguageError',
+                        showConfirmButton: true
+                    }).then(function () {
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Input mask Js -->
+    <script src="/js/plugins/jquery.mask.min.js"></script>
+    <!-- form-picker-custom Js -->
+    <script src="/js/pages/form-masking-custom.js"></script>
+
+    <script>
+    function GetProduct(id) {
+        console.log("GetProduct içine girdi.");
+        $.ajax({
+            url: "@Url.Action("EditProduct", "Admin")",
+            data: {id:id},
+            dataType:"text",
+
+            type: "GET",
+            traditional:true,
+            contentType: "application/x-www-form-urlencoded",
+            success: function(data) {
+                console.log(data);
+                $('#ProductName').val(data['productName']);
+                $('#ProductType').val(data['productType']);
+                $('#ProductDetails').val(data['productDetails']);
+                $('#ProductDetails2').val(data['productDetails2']);
+                $('#ProductImages').val(data['productImages']);
+
+                },
+            error: function() {
+                
+            }
+        });
+    };
+    </script>
+  @*  <script>
+
+
+        var filterColumns = [0, 1, 2, 3, 4];
+
+        $(document).ready(function () {
+
+            $('#proformaModal').on('show.bs.modal',
+                function(event) {
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+                    var data = button.data('whatever');
+                    var Id = button.data('id');
+                    //console.log('project id : ' + Id)
+                    var modal = $(this);
+                    modal.find('.modal-title').text(data + ' ' + 'Proforma Ayarlari');
+                    modal.find('.modal-body #ProjectName').val(data);
+                    modal.find('.modal-body #ProjectId').attr('value', Id);
+
+                    var today = new Date();
+                    var day = today.getDate();
+                    var month = today.getMonth()+1; //January is 0!
+                    var date = today.getFullYear() + '-' +
+                        (month<10 ? '0' : '') + month + '-' +
+                        (day<10 ? '0' : '') + day;
+                    modal.find('.modal-body #OfferDate').attr('value', date);
+                });
+            if ("True" == "True" && "True" == "False") {
+                $('#pills-rooftop').addClass('show');
+                $('#pills-rooftop').addClass('active');
+                $('#pills-rooftop-tab').addClass('active');
+            }
+            $('.animation-toggle').hover(function() {
+                var anim = $(this).attr('data-animate');
+                $(this).addClass('animated');
+                $(this).addClass(anim);
+                setTimeout(function() {
+                        $('.animation-toggle').removeClass(anim);
+                    },
+                    3000);
+            });
+            // DataTable
+            $('#dom-jqry').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json'
+                },
+                initComplete: function() {
+
+                    //Apply select search
+                    this.api().columns('.dt-filter-select').every(function() {
+                        var column = this;
+                        var select = $('<select class="select-design form-control" style="background:white;"><option value="">Se&#xE7;iniz</option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change',
+                                function() {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+                        column.data().unique().sort().each(function(d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>');
+                        });
+                    });
+
+                    //Apply text search
+                    this.api().columns('.dt-filter-text').every(function() {
+                        var title = $(this.footer()).text();
+                        $(this.footer()).html('<input type="text" style="background:white;" class="form-control"  placeholder="' + title + '" />');
+                        var that = this;
+                        $('input', this.footer()).on('keyup change',
+                            function() {
+                                if (that.search() !== this.value) {
+                                    that
+                                        .search(this.value)
+                                        .draw();
+                                }
+                            });
+                    });
+                }
+            });
+
+            $('#SelectAllRooftop').click(function () {
+                var checkBoxes = $('#ViewRooftopTableTBody').find(':checkbox');
+                if (this.checked) {
+                    checkBoxes.prop('checked', true);
+                } else {
+                    checkBoxes.prop('checked', false);
+                }
+            });
+
+            $('#SelectAllCloseControl').click(function () {
+                var checkBoxes = $('#ViewCloseControlTableTBody').find(':checkbox');
+                if (this.checked) {
+                    checkBoxes.prop('checked', true);
+                } else {
+                    checkBoxes.prop('checked', false);
+                }
+            });
+
+            $(document).on("click",
+                    "#generateProforma",
+                    function(e) {
+                        e.preventDefault();
+                        console.log("its working");
+                        let formElem = $("#generateProformaInfo");
+                        postableData = $(formElem).serialize();
+                        console.log(postableData);
+                        var token = $('input[name="__RequestVerificationToken"]', formElem).val();
+                        $.ajax({
+                            url: "/Project/Proforma",
+                            data: postableData,
+                            headers: {
+                                'RequestVerificationToken': token
+                            },
+                            type: "post",
+                            contentType: "application/x-www-form-urlencoded",
+                            beforeSend: function () {
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: 'Proforma y&#xFC;kleniyor..',
+                                    html: `<h6 class="text-center" style="color: #00a7e1;">L&#xFC;tfen bekleyin..</h6>
+                                    <div class="row my-4">
+                                        <div class="col-md-12 justify-content-center text-center">
+                                            <div class="spinner-border text-primary text-center" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>`,
+                                    showCancelButton: false,
+                                    showConfirmButton:false
+                                });
+                            },
+                            success: function(data) {
+                                //var parsedResponse = jQuery.parseJSON(data);
+                                swal.close();
+                                console.log('-----------------');
+                                console.log(data);
+                                var win = window.open(data, '_blank');
+                                if (win) {
+                                    location.reload();
+                                    //Browser has allowed it to be opened
+                                    win.focus();
+                                } else {
+                                    //Browser has blocked it
+
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Hata',
+                                        text: 'L&#xFC;tfen bu sitede popup kullan&#x131;m&#x131;na izin veriniz.',
+                                        showCancelButton: false
+                                    });
+                                }
+                            },
+                            error: function(data) {
+                                swal.close();
+                                $.each(data.responseJSON,
+                                    function(index, ele) {
+                                        if (index == "Summary") {
+                                            Swal.fire({
+                                                title: "Uyari",
+                                                html: ele[0],
+                                                type: "warning",
+                                                confirmButtonText: "Iptal"
+                                            })
+                                        } else {
+                                            elemId = index;
+                                            $("span[data-valmsg-for='" + index + "']").html('<span id="' + index + '-error" class="">' + ele + '</span>');
+                                        }
+                                    });
+                            }
+                        });
+                    });
+        });
+
+        function viewProforma(id){
+            $.ajax({
+                type: "POST",
+                url: "/Project/Proforma",
+                data: { id: id },
+                dataType: "text",
+                traditional: true,
+                success:
+                    function (response) {
+                        console.log("proforma action response >>");
+                        var parsedResponse = jQuery.parseJSON(response);
+                        console.log(parsedResponse);
+                        var win = window.open(parsedResponse, '_blank');
+                        if (win) {
+                            //Browser has allowed it to be opened
+                            win.focus();
+                        } else {
+                            //Browser has blocked it
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Hata',
+                                html: 'L&#xFC;tfen bu sitede popup kullan&#x131;m&#x131;na izin veriniz.',
+                                showCancelButton: false
+                            });
+                        }
+                    },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Rapor hazirlanirken hata olustu.',
+                        showCancelButton: false
+                    });
+                }
+            });
+        }
+
+        function getProducts(projectId) {
+
+            //Chiller FcCooling
+            $.ajax({
+                type: "POST",
+                url: "/Project/GetProjectChillerProduct",
+                data: { projectId: projectId, deviceType: "FCCooling" },
+                dataType: "text",
+                traditional: true,
+                success:
+                    function(response) {
+                        var parsedResponse = jQuery.parseJSON(response);
+                        console.log("FC Cooling");
+                        console.log(parsedResponse);
+                        console.log("-----");
+
+                        $('#ViewFCCoolingTableTBody').empty();
+
+                        if (parsedResponse.length == 0) {
+                            $('#ViewFCCoolingTableTBody').append(`<tr> <td colspan="6" class="text-center">Ürün bulunamadı.</td> </tr>`);
+                        } else {
+                            for (var i = 0; i < parsedResponse.length; i++) {
+
+                                $('#ViewFCCoolingTableTBody').append(`<tr>
+                                                    <td>${parsedResponse[i]['unitModel']}</td>
+                                                    <td>${parsedResponse[i]['fcCooling_CoolingCapacity']}</td>
+                                                    <td>${parsedResponse[i]['fcCooling_FCCoolingCapacity']}</td>
+                                                    <td>${parsedResponse[i]['fcCooling_Efficiency']}</td>
+                                                    <td>${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                                    <td> <a href="/Project/UpdateChillerProduct?id=${parsedResponse[i]['id']}&projectId=${projectId}" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-edit"></i></a>
+                                <button onclick="GetProjectChillerProductReport(${parsedResponse[i]['id']})" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-file-alt"></i></button>
+                                <a href="#" onclick="confirmDeleteChillerProductFCCooling(${parsedResponse[i]['id']}, ${projectId})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td>
+                                </tr>`);
+
+
+                            }
+                        }
+                    },
+                error: function() {
+                    alert('Urunler getirilirken hata olustu.');
+                }
+            });
+            //Chiller Cooling
+            $.ajax({
+                type: "POST",
+                url: "/Project/GetProjectChillerProduct",
+                data: { projectId: projectId, deviceType: "Cooling" },
+                dataType: "text",
+                traditional: true,
+                success:
+                    function(response) {
+                        var parsedResponse = jQuery.parseJSON(response);
+                        console.log("Cooling");
+                        console.log(parsedResponse);
+                        console.log("-----");
+
+                        $('#ViewCoolingTableTBody').empty();
+
+                        if (parsedResponse.length == 0) {
+                            $('#ViewCoolingTableTBody').append(`<tr> <td colspan="6" class="text-center">Ürün bulunamadı.</td> </tr>`);
+                        } else {
+                            for (var i = 0; i < parsedResponse.length; i++) {
+
+                                var deviceType = parsedResponse[i]['deviceType'];
+
+                                $('#ViewCoolingTableTBody').append(`<tr>
+                                                    <td>${parsedResponse[i]['unitModel']}</td>
+                                                    <td>${parsedResponse[i]['cooling_CoolingCapacity']}</td>
+                                                    <td>${parsedResponse[i]['cooling_Efficiency']}</td>
+                                                    <td>${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                                    <td> <a href="/Project/UpdateChillerProduct?id=${parsedResponse[i]['id']}&projectId=${projectId}" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-edit"></i></a>
+                                <button onclick="GetProjectChillerProductReport(${parsedResponse[i]['id']})" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-file-alt"></i></button>
+                                <a href="#" onclick="confirmDeleteChillerProductCooling(${parsedResponse[i]['id']}, ${projectId})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td>
+                                </tr>`);
+                            }
+                        }
+                    },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Urunler getirilirken hata olustu.',
+                        showCancelButton: false
+                    });
+                }
+            });
+            //Chiller Heatpump
+            $.ajax({
+                type: "POST",
+                url: "/Project/GetProjectChillerProduct",
+                data: { projectId: projectId, deviceType: "Heatpump" },
+                dataType: "text",
+                traditional: true,
+                success:
+                    function(response) {
+                        var parsedResponse = jQuery.parseJSON(response);
+                        console.log("Heatpump");
+                        console.log(parsedResponse);
+                        console.log("-----");
+
+                        $('#ViewHeatpumpTableTBody').empty();
+
+                        if (parsedResponse.length == 0) {
+                            $('#ViewHeatpumpTableTBody').append(`<tr> <td colspan="7" class="text-center">Ürün bulunamadı.</td> </tr>`);
+                        } else {
+                            for (var i = 0; i < parsedResponse.length; i++) {
+
+                                var deviceType = parsedResponse[i]['deviceType'];
+
+                                $('#ViewHeatpumpTableTBody').append(`<tr>
+                                                        <td>${parsedResponse[i]['unitModel']}</td>
+                                                        <td>${parsedResponse[i]['heatpump_CoolingEfficiency'].toString().replace(".", ",")}</td>
+                                                        <td>${parsedResponse[i]['heatpump_HeatingEfficiency'].toString().replace(".", ",")}</td>
+                                                        <td>${parsedResponse[i]['heatpump_CoolingCapacity'].toString().replace(".", ",")}</td>
+                                                        <td>${parsedResponse[i]['heatpump_HeatingCapacity'].toString().replace(".", ",")}</td>
+                                                        <td>${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                                        <td> <a href="/Project/UpdateChillerProduct?id=${parsedResponse[i]['id']}&projectId=${projectId}" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-edit"></i></a>
+                                <button onclick="GetProjectChillerProductReport(${parsedResponse[i]['id']})" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-file-alt"></i></button>
+                                <a href="#" onclick="confirmDeleteChillerProductHeatpump(${parsedResponse[i]['id']}, ${projectId})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td>
+                                </tr>`);
+                            }
+                        }
+                    },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Urunler getirilirken hata olustu.',
+                        showCancelButton: false
+                    });
+                }
+            });
+
+            GetRooftopProducts(projectId);
+            GetProjectCloseControlProducts(projectId);
+        };
+
+        function GetTotalReports() {
+            var prpList =[];
+            $('#ViewRooftopTableTBody input:checked').each(function () {
+                prpList.push(this.id);
+            });
+
+            if (prpList.length == 0) {
+                Swal.fire({
+                        icon: 'info',
+                        title: 'Bilgilendirme',
+                        html: 'Toplu rapor alabilmek i&#xE7;in &#xFC;r&#xFC;n sat&#x131;rlar&#x131;n&#x131;n yan&#x131;nda bulunan se&#xE7;im kutular&#x131;n&#x131; i&#x15F;aretlemeniz gerekir.',
+                        showCancelButton: false
+                    });
+            } else {
+                var i = 0;
+                setInterval(function () {
+                    if (i < prpList.length) {
+                        GetProjectRooftopProductReport(prpList[i]);
+                        i++;
+                        swal.close();
+                    } else {
+                        clearInterval();
+                    }
+                }, 1000);
+                //for (var i = 0; i < prpList.length; i++) {
+                //    GetProjectRooftopProductReport(prpList[i]);
+                //    swal.close();
+                //}
+            }
+
+        };
+
+        function GetTotalCloseControlReports() {
+            var pccpList =[];
+            $('#ViewCloseControlTableTBody input:checked').each(function () {
+                pccpList.push(this.id);
+            });
+            console.log(pccpList);
+
+            if (pccpList.length == 0) {
+                Swal.fire({
+                        icon: 'info',
+                        title: 'Bilgilendirme',
+                        html: 'Toplu rapor alabilmek i&#xE7;in &#xFC;r&#xFC;n sat&#x131;rlar&#x131;n&#x131;n yan&#x131;nda bulunan se&#xE7;im kutular&#x131;n&#x131; i&#x15F;aretlemeniz gerekir.',
+                        showCancelButton: false
+                    });
+            } else {
+                var i = 0;
+                setInterval(function () {
+                    if (i < pccpList.length) {
+                        GetProjectCloseControlProductReport(pccpList[i]);
+                        i++;
+                        swal.close();
+                    } else {
+                        clearInterval();
+                    }
+                }, 1000);
+                //for (var i = 0; i < pccpList.length; i++) {
+                //    
+                //}
+            }
+        }
+
+        function GetRooftopProducts(projectId) {
+            var type = "Normal";
+            // Rooftop
+            $.ajax({
+                type: "POST",
+                url: "/Rooftop/GetProjectRooftopProduct",
+                data: { projectId: projectId,type:type},
+                dataType: "text",
+                traditional: true,
+                success:
+                    function(response) {
+                        var parsedResponse = jQuery.parseJSON(response);
+                        console.log(parsedResponse);
+                        $('#ViewRooftopTableTBody').empty();
+                        if (parsedResponse.length == 0) {
+                            $('#ViewRooftopTableTBody').append(`<tr> <td colspan="5" class="text-center">&#xDC;r&#xFC;n bulunamad&#x131;.</td> </tr>`);
+                        } else {
+                            for (var i = 0; i < parsedResponse.length; i++) {
+
+                                $('#ViewRooftopTableTBody').append(`<tr>
+                                                        <td><input class="d-block" style="margin-left:auto;margin-right:auto;" type="checkbox" id="${parsedResponse[i]['id']}" value="${parsedResponse[i]['id']}"></td>
+                                                        <td>${parsedResponse[i]['model']}</td>
+                                                        <td>${parsedResponse[i]['modelType']}</td>
+                                                        <td >${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                                        <td>
+                                <a href="/Rooftop/UpdateRooftopProduct?id=${parsedResponse[i]['id']}&projectId=${projectId}" class="btn btn-icon btn-AddProduct btn-sm"><i class="fas fa-edit"></i></a>
+                                <button onclick="GetProjectRooftopProductReport(${parsedResponse[i]['id']},'Normal')" class="btn btn-icon btn-ViewProduct btn-sm"><i class="fas fa-file-alt"></i></button>
+                                <button  onclick="GetProjectRooftopProductReport(${parsedResponse[i]['id']},'Detail')" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-file-medical-alt"></i></button>
+                                <a href="#" onclick="confirmDeleteRooftopProduct(${parsedResponse[i]['id']})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td>
+                                </tr>`);
+
+                            }
+                        }
+                    },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Urunler getirilirken hata olustu.',
+                        showCancelButton: false
+                    });
+                }
+            });
+        };
+
+        function GetProjectCloseControlProducts(projectId) {
+            $.ajax({
+                type: "POST",
+                url: "/CloseControl/GetProjectCloseControlProducts",
+                data: { projectId: projectId},
+                dataType: "text",
+                traditional: true,
+                success:
+                    function(response) {
+                        var parsedResponse = jQuery.parseJSON(response);
+                        console.log(parsedResponse);
+                        $('#ViewCloseControlTableTBody').empty();
+                        if (parsedResponse.length == 0) {
+                            $('#ViewCloseControlTableTBody').append(`<tr> <td colspan="5" class="text-center">&#xDC;r&#xFC;n bulunamad&#x131;.</td> </tr>`);
+                        } else {
+                            for (var i = 0; i < parsedResponse.length; i++) {
+
+                                $('#ViewCloseControlTableTBody').append(`<tr>
+                                                        <td><input class="d-block" style="margin-left:auto;margin-right:auto;" type="checkbox" id="${parsedResponse[i]['id']}" value="${parsedResponse[i]['id']}"></td>
+                                                        <td>${parsedResponse[i]['model']}</td>
+                                                        <td>${parsedResponse[i]['productType']}</td>
+                                                        <td>${parsedResponse[i]['workingType']}</td>
+                                                        <td>
+                                <a href="/CloseControl/UpdateCloseControlProduct?id=${parsedResponse[i]['id']}&projectId=${projectId}" class="btn btn-icon btn-AddProduct btn-sm"><i class="fas fa-edit"></i></a>
+                                <button onclick="GetProjectCloseControlProductReport(${parsedResponse[i]['id']},'Normal')" class="btn btn-icon btn-ViewProduct btn-sm"><i class="fas fa-file-alt"></i></button>
+                                <button  onclick="GetProjectCloseControlProductReport(${parsedResponse[i]['id']},'Detail')" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-file-medical-alt"></i></button>
+                                <a href="#" onclick="confirmDeleteCloseControlProduct(${parsedResponse[i]['id']})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td>
+                                </tr>`);
+
+                            }
+                        }
+                    },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Urunler getirilirken hata olustu.',
+                        showCancelButton: false
+                    });
+                }
+            });
+        };
+
+        function addProducts(projectId) {
+            $('#addModal').empty();
+            if ("True" == "True") {
+                $('#addModal').append(`
+                      <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                          <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Chiller</h5>
+                                <a href="/Project/AddProduct?id=${projectId}"><img src="/images/ImbatProducts/su-sogutma-yeni.png" alt="img" style="padding: 10px;max-height:350px;max-width:250px" class="img-fluid card-img-bottom"></a>
+                            </div>
+                          </div>
+                      </div>`);
+            }
+            if ("True" == "True") {
+                $('#addModal').append(`
+                      <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                          <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Rooftop</h5>
+                                <a href="/Rooftop/AddRooftopProduct?id=${projectId}"><img src="/images/ImbatProducts/rooftop.png" alt="img" style="padding: 10px;max-height:350px;max-width:250px" class="img-fluid card-img-bottom"></a>
+                            </div>
+                          </div>
+                      </div>`);
+            }
+             if ("True" == "True") {
+                $('#addModal').append(`
+                      <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                          <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Hassas Klima</h5>
+                                <a href="/CloseControl/AddCloseControlUnit?id=${projectId}"><img src="/images/ImbatProducts/hassas-kontrollu.png" alt="img" style="padding: 10px;max-height: 207px;object-fit: contain;" class="img-fluid card-img-bottom"></a>
+                            </div>
+                          </div>
+                      </div>`);
+            }
+
+            if ("True" == "False" && "True" == "False" && "True" == "False"){
+                $('#addModal').append(`
+                      <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                          <div class="alert alert-info mt-2 w-100" role="alert">
+                              <p class="m-0 text-center" style="font-size:12px;">Sistemde tan&#x131;ml&#x131; &#xFC;r&#xFC;n tiplerinden herhangi birine ait bir izniniz bulunmad&#x131;&#x11F;&#x131; i&#xE7;in &#xFC;r&#xFC;n ekleyemezsiniz. Bir hata oldu&#x11F;unu d&#xFC;&#x15F;&#xFC;n&#xFC;yorsan&#x131;z Yard&#x131;m k&#x131;sm&#x131;ndan bizimle ileti&#x15F;ime ge&#xE7;iniz.</p>
+                          </div>
+                      <a href="/Help/Index" class="btn btn-icon btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Yard&#x131;m"><i class="feather icon-help-circle"></i></a>
+                      </div>`);
+            }
+        }
+
+        function GetProjectChillerProductReport(pcpId) {
+            $.ajax({
+            type: "GET",
+            url: "/Chiller/GetProjectChillerProductReport",
+            data: {pcpId:pcpId},
+            dataType: "text",
+            beforeSend: function () {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Rapor y&#xFC;kleniyor..',
+                    html: `<h6 class="text-center" style="color: #00a7e1;">L&#xFC;tfen bekleyin..</h6>
+                <div class="row my-4">
+                    <div class="col-md-12 justify-content-center text-center">
+                        <div class="spinner-border text-primary text-center" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>`,
+                    showCancelButton: false,
+                    showConfirmButton:false
+                });
+            },
+            success:
+                function(response) {
+                    var parsedResponse = jQuery.parseJSON(response);
+                    if (parsedResponse == "NotFound") {
+                        swal.close();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Bilgilendirme',
+                            html: 'Sistemde &#xFC;r&#xFC;ne ait bir rapor bulunamad&#x131;!',
+                            showCancelButton: false
+                        });
+                    } else {
+                        swal.close();
+                        var win = window.open(parsedResponse, '_blank');
+                        if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                        } else {
+                        //Browser has blocked it
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            html: 'L&#xFC;tfen bu sitede popup kullan&#x131;m&#x131;na izin veriniz.',
+                            showCancelButton: false
+                        });
+                        }
+                    }
+            },
+                error: function () {
+                    swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Hata',
+                    showCancelButton: false
+                });
+            },
+        });
+        };
+
+        function confirmDeleteRooftopProduct(id) {
+            Swal.fire({
+                icon: 'question',
+
+                            }
+                            [10:25, 22.09.2022] Ayşegül: <tr>
+                                        <td>Primeware</td>
+                                        <td style="min-width: 50px">System Test Project</td>
+                                        <td>PR-112021-0004</td>
+                                        <td>4.11.2021</td>
+                                        <td>Murat Ek&#x15F;i</td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#addProductModal"><a href="#" onclick="addProducts(1248)" class="btn btn-icon btn-AddProduct btn-sm btnAddProduct" data-toggle="tooltip" data-placement="top" data-original-title="&#xDC;r&#xFC;n Ekle"><i class="fas fa-plus-circle"></i></a></span>
+                                            <spa…
+[10:25, 22.09.2022] Ayşegül: },
+                        error: function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Hata',
+                                text: 'Ur&#xFC;n silinirken hata olustu.',
+                                showConfirmButton: true
+                            });
+                        }
+                    });
+                }
+            });
+        };
+
+        function confirmDeleteCloseControlProduct(id) {
+            Swal.fire({
+                icon: 'question',
+                title: 'Onay &#x130;&#x15F;lemi',
+                html: 'CloseControlProductDeleteMessage',
+                showCancelButton: true,
+                confirmButtonText: `Sil`
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/CloseControl/DeleteProjectCloseControlProduct",
+                        data: { id: id },
+                        dataType: "text",
+                        traditional: true,
+                        success: function (response) {
+                            console.log('respone > ' + response);
+                            if (response == '"YouCantDeleteThisProject"') {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Bilgilendirme',
+                                    html: 'Proje sahibi olmad&#x131;&#x11F;&#x131;n&#x131;z i&#xE7;in, bu projeden &#xFC;r&#xFC;n silemezsiniz! Silme i&#x15F;lemi iptal edildi.',
+                                    showCancelButton:false
+                                });
+                            } else {
+                                Swal.fire({
+                                icon: 'success',
+                                title: 'Basarili',
+                                text: 'Urun basariyla silindi.',
+                                showConfirmButton: true
+                            }).then(function () {
+                                GetProjectCloseControlProducts(response);
+                            });
+                            }
+                        },
+                        error: function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Hata',
+                                text: 'Ur&#xFC;n silinirken hata olustu.',
+                                showConfirmButton: true
+                            });
+                        }
+                    });
+                }
+            });
+        };
+
+        function GetProjectRooftopProductReport(prpId,type) {
+            $.ajax({
+            type: "GET",
+            url: "/Rooftop/GetProjectRooftopProductReport",
+            data: {prpId:prpId,type:type},
+            dataType: "text",
+            beforeSend: function () {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Rapor y&#xFC;kleniyor..',
+                    html: `<h6 class="text-center" style="color: #00a7e1;">L&#xFC;tfen bekleyin..</h6>
+                <div class="row my-4">
+                    <div class="col-md-12 justify-content-center text-center">
+                        <div class="spinner-border text-primary text-center" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>`,
+                    showCancelButton: false,
+                    showConfirmButton:false
+                });
+            },
+            success:
+                function(response) {
+                    var parsedResponse = jQuery.parseJSON(response);
+                    if (parsedResponse == "NotFound") {
+                        swal.close();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Bilgilendirme',
+                            html: 'Sistemde &#xFC;r&#xFC;ne ait bir rapor bulunamad&#x131;!',
+                            showCancelButton: false
+                        });
+                    } else {
+                        swal.close();
+                        var win = window.open(parsedResponse, '_blank');
+                        if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                        } else {
+                        //Browser has blocked it
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            html: 'L&#xFC;tfen bu sitede popup kullan&#x131;m&#x131;na izin veriniz.',
+                            showCancelButton: false
+                        });
+                        }
+                    }
+            },
+                error: function () {
+                    swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Hata',
+                    showCancelButton: false
+                });
+            },
+        });
+        };
+
+        function GetProjectCloseControlProductReport(pccpId, type) {
+            $.ajax({
+            type: "GET",
+            url: "/CloseControl/GetProjectCloseControlProductReport",
+            data: {pccpId:pccpId,type:type},
+            dataType: "text",
+            beforeSend: function () {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Rapor y&#xFC;kleniyor..',
+                    html: `<h6 class="text-center" style="color: #00a7e1;">L&#xFC;tfen bekleyin..</h6>
+                <div class="row my-4">
+                    <div class="col-md-12 justify-content-center text-center">
+                        <div class="spinner-border text-primary text-center" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>`,
+                    showCancelButton: false,
+                    showConfirmButton:false
+                });
+            },
+            success:
+                function(response) {
+                    var parsedResponse = jQuery.parseJSON(response);
+                    if (parsedResponse == "NotFound") {
+                        swal.close();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Bilgilendirme',
+                            html: 'Sistemde &#xFC;r&#xFC;ne ait bir rapor bulunamad&#x131;!',
+                            showCancelButton: false
+                        });
+                    } else {
+                        swal.close();
+                        var win = window.open(parsedResponse, '_blank');
+                        if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                        } else {
+                        //Browser has blocked it
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            html: 'L&#xFC;tfen bu sitede popup kullan&#x131;m&#x131;na izin veriniz.',
+                            showCancelButton: false
+                        });
+                        }
+                    }
+            },
+                error: function () {
+                    swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Hata',
+                    showCancelButton: false
+                });
+            },
+        });
+        };
+
+        function confirmDeleteChillerProductHeatpump(id, projectId) {
+
+            var result = confirm('Silmek istediginize emin misiniz?');
+
+            if (result == true) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Project/DeleteChillerProductHeatpump",
+                    data: { id: id, projectId: projectId },
+                    dataType: "text",
+                    traditional: true,
+                    success:
+                        function(response) {
+                            var parsedResponse = jQuery.parseJSON(response);
+                            console.log(parsedResponse);
+                            $('#ViewHeatpumpTableTBody').empty();
+                            if (parsedResponse.length == 0) {
+                                $('#ViewHeatpumpTableTBody').append(`<tr> <td colspan="7" class="text-center">Ürün bulunamadı.</td> </tr>`);
+                            } else {
+                                for (var i = 0; i < parsedResponse.length; i++) {
+
+                                    var deviceType = parsedResponse[i]['deviceType'];
+
+                                    if (deviceType == "Heatpump") {
+                                        $('#ViewHeatpumpTableTBody').append(`<tr>
+                                                        <td>${parsedResponse[i]['unitModel']}</td>
+                                                        <td>${parsedResponse[i]['coolingTotalPowerInput'].toString().replace(".", ",")}</td>
+                                                        <td>${parsedResponse[i]['heatingTotalPowerInput'].toString().replace(".", ",")}</td>
+                                                        <td>${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                                        <td>${parsedResponse[i]['coolingCapacity'].toString().replace(".", ",")}</td>
+                                                        <td>${parsedResponse[i]['heatingCapacity'].toString().replace(".", ",")}</td>
+                                                        <td> <a href="/Project/UpdateChillerProduct?id=${parsedResponse[i]['id']}&projectId=${parsedResponse[i]["projectId"]}" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-edit"></i></a> <a href="#" onclick="confirmDeleteChillerProductHeatpump(${parsedResponse[i]['id']}, ${parsedResponse[i]["projectId"]})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td> </tr>`);
+                                    }
+
+                                }
+                            }
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Basarili',
+                                text: 'Urun basariyla silindi.',
+                                showCancelButton: false
+                            });
+                        },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            text: 'Ur&#xFC;n silinirken hata olustu.',
+                            showCancelButton: false
+                        });
+                    }
+                });
+            }
+        }
+
+        function confirmDeleteChillerProductCooling(id, projectId) {
+
+            var result = confirm('Silmek istediginize emin misiniz?');
+
+            if (result == true) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Project/DeleteChillerProductCooling",
+                    data: { id: id, projectId: projectId },
+                    dataType: "text",
+                    traditional: true,
+                    success:
+                        function(response) {
+                            var parsedResponse = jQuery.parseJSON(response);
+                            console.log(parsedResponse);
+                            $('#ViewCoolingTableTBody').empty();
+                            if (parsedResponse.length == 0) {
+                                $('#ViewCoolingTableTBody').append(`<tr> <td colspan="6" class="text-center">Ürün bulunamadı.</td> </tr>`);
+                            } else {
+                                getProducts(projectId);
+                                //for (var i = 0; i < parsedResponse.length; i++) {
+
+                                //    var deviceType = parsedResponse[i]['deviceType'];
+
+                                //    if (deviceType == "Cooling" || deviceType == "Soğutma") {
+                                //        $('#ViewCoolingTableTBody').append(`<tr>
+                                //                    <td hidden>${parsedResponse[i]['unitId']}</td>
+                                //                    <td>${parsedResponse[i]['unitModel']}</td>
+                                //                    <td hidden>${parsedResponse[i]['coolingWaterFlow']}</td>
+                                //                    <td>${parsedResponse[i]['coolingCapacity']}</td>
+                                //                    <td>${parsedResponse[i]['coolingTotalPowerInput']}</td>
+                                //                    <td>${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                //                    <td> <a href="/Project/UpdateChillerProduct?id=${parsedResponse[i]['id']}&projectId=${parsedResponse[i]["projectId"]}" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-edit"></i></a> <a href="#" onclick="confirmDeleteChillerProductCooling(${parsedResponse[i]['id']}, ${parsedResponse[i]["projectId"]})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td> </tr>`);
+                                //    }
+
+                                //}
+                            }
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Basarili',
+                                text: 'Urun basariyla silindi.',
+                                showCancelButton: false
+                            });
+                        },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            text: 'Ur&#xFC;n silinirken hata olustu.',
+                            showCancelButton: false
+                        });
+                    }
+                });
+            }
+        }
+
+        function confirmDeleteChillerProductFCCooling(id, projectId) {
+
+            var result = confirm('Silmek istediginize emin misiniz?');
+
+            if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Project/DeleteChillerProductFCCooling",
+                    data: { id: id, projectId: projectId },
+                    dataType: "text",
+                    traditional: true,
+                    success:
+                        function(response) {
+                            var parsedResponse = jQuery.parseJSON(response);
+                            console.log(parsedResponse);
+
+                            $('#ViewFCCoolingTableTBody').empty();
+                            if (parsedResponse.length == 0) {
+                                $('#ViewFCCoolingTableTBody').append(`<tr> <td colspan="6" class="text-center">Ürün bulunamadı.</td> </tr>`);
+                            } else {
+                                for (var i = 0; i < parsedResponse.length; i++) {
+
+                                    var deviceType = parsedResponse[i]['deviceType'];
+
+                                    if (deviceType == "FCCooling") {
+                                        $('#ViewFCCoolingTableTBody').append(`<tr>
+                                                    <td hidden>${parsedResponse[i]['unitId']}</td>
+                                                    <td>${parsedResponse[i]['unitModel']}</td>
+                                                    <td hidden>${parsedResponse[i]['fcCoolingWaterFlow']}</td>
+                                                    <td>${parsedResponse[i]['fcCoolingCapacity']}</td>
+                                                    <td>${parsedResponse[i]['fcCapacity']}</td>
+                                                    <td>${parsedResponse[i]['fcCoolingTotalPowerInput']}</td>
+                                                    <td>${$.fn.dataTable.render.number('.', ',', 2, '€ ').display(parsedResponse[i]['unitPrice'])}</td>
+                                                    <td> <a href="/Project/UpdateChillerProduct?id=${parsedResponse[i]['id']}&projectId=${parsedResponse[i]["projectId"]}" class="btn btn-icon btn-ProjectDetails btn-sm"><i class="fas fa-edit"></i></a> <a href="#" onclick="confirmDeleteChillerProductFCCooling(${parsedResponse[i]['id']}, ${parsedResponse[i]["projectId"]})" class="btn btn-icon btn-Delete btn-sm"><i class="fas fa-trash-alt"></i></a> </td> </tr>`);
+
+                                    }
+
+                                }
+                            }
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Basarili',
+                                text: 'Urun basariyla silindi.',
+                                showCancelButton: false
+                            });
+                        },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            text: 'Ur&#xFC;n silinirken hata olustu.',
+                            showCancelButton: false
+                        });
+                    }
+                });
+
+        };
+
+    </script>*@
+
